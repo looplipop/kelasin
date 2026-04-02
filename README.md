@@ -133,7 +133,7 @@ Project ini memenuhi **SEMUA** requirement tugas Week 5:
 
 1. **Clone Repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/kelasin.git
+   git clone https://github.com/looplipop/kelasin.git
    cd kelasin
    ```
 
