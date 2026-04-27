@@ -475,7 +475,6 @@ fun HomeScreen(
                 )
             }
         }
-        }
     }
     
     // --- Assignment Requirement: Gesture Interaction (Long Press on Button) ---

@@ -337,17 +337,19 @@ private fun KelasinBottomBar(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     leftItems.forEach { screen ->
-                        BottomIconItem(
-                            screen = screen,
-                            selected = currentScreen == screen,
-                            selectedTint = KelasinPrimary,
-                            unselectedTint = unselectedTint,
-                            modifier = Modifier.weight(1f),
-                            onClick = {
-                                view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-                                onScreenClick(screen)
-                            }
-                        )
+                        key(screen.route) {
+                            BottomIconItem(
+                                screen = screen,
+                                selected = currentScreen == screen,
+                                selectedTint = KelasinPrimary,
+                                unselectedTint = unselectedTint,
+                                modifier = Modifier.weight(1f),
+                                onClick = {
+                                    view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
+                                    onScreenClick(screen)
+                                }
+                            )
+                        }
                     }
                 }
             }
@@ -370,17 +372,19 @@ private fun KelasinBottomBar(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     rightItems.forEach { screen ->
-                        BottomIconItem(
-                            screen = screen,
-                            selected = currentScreen == screen,
-                            selectedTint = KelasinPrimary,
-                            unselectedTint = unselectedTint,
-                            modifier = Modifier.weight(1f),
-                            onClick = {
-                                view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-                                onScreenClick(screen)
-                            }
-                        )
+                        key(screen.route) {
+                            BottomIconItem(
+                                screen = screen,
+                                selected = currentScreen == screen,
+                                selectedTint = KelasinPrimary,
+                                unselectedTint = unselectedTint,
+                                modifier = Modifier.weight(1f),
+                                onClick = {
+                                    view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
+                                    onScreenClick(screen)
+                                }
+                            )
+                        }
                     }
                 }
             }

@@ -63,9 +63,9 @@ fun AbsensiScreen(
     var selectedPertemuan by remember { mutableStateOf(1) } // Default ke pertemuan 1
     var expandedPertemuan by remember { mutableStateOf(false) }
     var showMahasiswaManager by remember { mutableStateOf(false) }
-    // Track which (mkId, pertemuanKe) combos we've already tried seeding this session
-    val seededSessions = remember { mutableSetOf<Pair<Long, Int>>() }
-    val healedSessions = remember { mutableSetOf<Pair<Long, Int>>() }
+    // Track which (mkId, pertemuanKe) combos we've already handled in this composition session
+    val seededSessions = remember { mutableStateMapOf<Pair<Long, Int>, Boolean>() }
+    val healedSessions = remember { mutableStateMapOf<Pair<Long, Int>, Boolean>() }
 
     val context = LocalContext.current
     
@@ -87,13 +87,13 @@ fun AbsensiScreen(
         val mk = selectedMk ?: return@LaunchedEffect
         if (records.isEmpty() || mhsList.isEmpty()) return@LaunchedEffect
         val key = Pair(mk.id, selectedPertemuan)
-        if (healedSessions.contains(key)) return@LaunchedEffect
+        if (healedSessions[key] == true) return@LaunchedEffect
 
         val knownIds = mhsList.map { it.id }.toSet()
         val unknown = records.filter { it.mahasiswaId !in knownIds }
         if (unknown.isEmpty()) return@LaunchedEffect
 
-        healedSessions.add(key)
+        healedSessions[key] = true
         val knownMahasiswaIds = records
             .filter { it.mahasiswaId in knownIds }
             .map { it.mahasiswaId }
@@ -129,7 +129,7 @@ fun AbsensiScreen(
         val mk = selectedMk ?: return@LaunchedEffect
         if (mhsList.isEmpty()) return@LaunchedEffect
         val key = Pair(mk.id, selectedPertemuan)
-        if (!seededSessions.add(key)) return@LaunchedEffect
+        if (seededSessions.put(key, true) == true) return@LaunchedEffect
 
         absensiRepo.deleteDuplicateRowsByMahasiswa(userId, mk.id, selectedPertemuan)
         val existing = absensiRepo.getByPertemuan(userId, mk.id, selectedPertemuan)

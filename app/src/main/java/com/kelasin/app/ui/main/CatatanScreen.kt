@@ -66,6 +66,9 @@ import com.kelasin.app.ui.theme.*
 import com.kelasin.app.ui.viewer.FileViewerActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import java.io.IOException
@@ -244,7 +247,16 @@ fun CatatanScreen(
     val darkTheme = LocalThemeMode.current
     val mkList by mkRepo.getAll(userId).collectAsStateWithLifecycle(emptyList())
     var searchQuery by remember { mutableStateOf("") }
-    val catatanList by (if (searchQuery.isBlank()) repo.getAll(userId) else repo.search(userId, searchQuery)).collectAsStateWithLifecycle(emptyList())
+    val debouncedSearchQuery by produceState(initialValue = "") {
+        snapshotFlow { searchQuery.trim() }
+            .debounce(250)
+            .distinctUntilChanged()
+            .collect { value = it }
+    }
+    val catatanFlow = remember(userId, debouncedSearchQuery) {
+        if (debouncedSearchQuery.isBlank()) repo.getAll(userId) else repo.search(userId, debouncedSearchQuery)
+    }
+    val catatanList by catatanFlow.collectAsStateWithLifecycle(emptyList())
     var showDialog by remember { mutableStateOf(false) }
     var editItem by remember { mutableStateOf<CatatanEntity?>(null) }
     var activeChat by remember { mutableStateOf<CatatanEntity?>(null) }
@@ -256,6 +268,7 @@ fun CatatanScreen(
     val activeChatState = activeChat?.let { selected ->
         catatanList.find { it.id == selected.id } ?: selected
     }
+    val catatanRoomIds = remember(catatanList) { catatanList.map { it.id } }
     val roomMessages by (
         activeChatState?.let { chatRepo.getMessages(it.id) } ?: flowOf(emptyList())
     ).collectAsStateWithLifecycle(emptyList())
@@ -276,17 +289,19 @@ fun CatatanScreen(
         }
     }
 
-    LaunchedEffect(catatanList) {
-        catatanList.forEach { room ->
-            runCatching { chatRepo.refresh(room.id) }
+    LaunchedEffect(catatanRoomIds) {
+        catatanRoomIds.forEach { roomId ->
+            runCatching { chatRepo.refresh(roomId) }
+                .onFailure { cloudStatusMessage = cloudStatusText(it) }
         }
     }
 
-    LaunchedEffect(activeChatState?.id, catatanList.map { it.id }) {
-        if (activeChatState != null) return@LaunchedEffect
-        while (true) {
-            catatanList.forEach { room ->
-                runCatching { chatRepo.refresh(room.id) }
+    LaunchedEffect(activeChatState?.id, catatanRoomIds) {
+        if (activeChatState != null || catatanRoomIds.isEmpty()) return@LaunchedEffect
+        while (isActive) {
+            catatanRoomIds.forEach { roomId ->
+                runCatching { chatRepo.refresh(roomId) }
+                    .onFailure { cloudStatusMessage = cloudStatusText(it) }
             }
             delay(3500)
         }
@@ -385,8 +400,9 @@ fun CatatanScreen(
 
     LaunchedEffect(activeChatState?.id) {
         if (activeChatState != null) return@LaunchedEffect
-        while (true) {
+        while (isActive) {
             runCatching { repo.refreshAllRooms() }
+                .onFailure { cloudStatusMessage = cloudStatusText(it) }
             delay(5000)
         }
     }
@@ -394,7 +410,7 @@ fun CatatanScreen(
     LaunchedEffect(activeChatState?.id) {
         val roomId = activeChatState?.id ?: return@LaunchedEffect
         sendError = null
-        while (true) {
+        while (isActive) {
             runCatching {
                 chatRepo.refresh(roomId)
                 repo.refreshAllRooms()
@@ -478,8 +494,14 @@ fun CatatanScreen(
                     sendError = sendError,
                     onSend = { text, isAnon ->
                                 scope.launch {
-                                    chatRepo.sendMessage(chat.id, userId, userName, text, isAnonymous = isAnon)
-                                    repo.refreshAllRooms()
+                                    runCatching {
+                                        chatRepo.sendMessage(chat.id, userId, userName, text, isAnonymous = isAnon)
+                                        repo.refreshAllRooms()
+                                    }.onSuccess {
+                                        sendError = null
+                                    }.onFailure {
+                                        sendError = "Gagal mengirim pesan"
+                                    }
                                 }
                     },
                     onClose = { activeChat = null },
