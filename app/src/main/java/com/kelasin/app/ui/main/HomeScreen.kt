@@ -49,6 +49,8 @@ import com.kelasin.app.ui.theme.DynamicStatusBar
 import com.kelasin.app.ui.theme.KelasinPrimaryLight
 import com.kelasin.app.ui.theme.KelasinDarkBannerBlue
 import com.kelasin.app.ui.components.InitialsAvatar
+import com.kelasin.app.ui.seminar.SeminarContract
+import com.kelasin.app.ui.seminar.SeminarHomeActivity
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -262,6 +264,76 @@ fun HomeScreen(
             }
 
 
+
+            // Seminar Registration Feature Entry
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                Brush.linearGradient(
+                                    listOf(
+                                        KelasinPrimary.copy(alpha = 0.95f),
+                                        KelasinSecondary.copy(alpha = 0.90f)
+                                    )
+                                )
+                            )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(18.dp),
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    imageVector = Icons.Filled.Campaign,
+                                    contentDescription = null,
+                                    tint = Color.White,
+                                    modifier = Modifier.size(22.dp)
+                                )
+                                Spacer(Modifier.width(8.dp))
+                                Text(
+                                    "Seminar Registration App",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.White
+                                )
+                            }
+                            Text(
+                                "Daftarkan dirimu ke seminar kampus dengan form validasi real-time dan konfirmasi data.",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color.White.copy(alpha = 0.92f)
+                            )
+                            Button(
+                                onClick = {
+                                    context.startActivity(
+                                        Intent(context, SeminarHomeActivity::class.java).apply {
+                                            putExtra(SeminarContract.EXTRA_USER_ID, userId)
+                                            putExtra(SeminarContract.EXTRA_USER_NAME, userName)
+                                            putExtra(SeminarContract.EXTRA_USER_ROLE, userRole)
+                                            putExtra(SeminarContract.EXTRA_USER_PIC, userProfile?.displayProfilePic)
+                                        }
+                                    )
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color.White,
+                                    contentColor = KelasinPrimary
+                                ),
+                                shape = RoundedCornerShape(12.dp)
+                            ) {
+                                Icon(Icons.Filled.AppRegistration, contentDescription = null)
+                                Spacer(Modifier.width(8.dp))
+                                Text("Daftar Seminar")
+                            }
+                        }
+                    }
+                }
+            }
 
             // Cloud Database Section
             item {

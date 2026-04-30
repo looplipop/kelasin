@@ -111,6 +111,23 @@ create table if not exists public.absensi (
     user_id uuid not null references public.users(id) on delete cascade
 );
 
+create table if not exists public.seminars (
+    id uuid primary key default gen_random_uuid(),
+    title text not null,
+    description text not null default '',
+    date timestamptz not null default now(),
+    location text not null default '',
+    notes text
+);
+
+create table if not exists public.seminar_registrations (
+    id uuid primary key default gen_random_uuid(),
+    seminar_id uuid not null references public.seminars(id) on delete cascade,
+    user_id uuid not null references public.users(id) on delete cascade,
+    status text not null default 'pending',
+    unique (seminar_id, user_id)
+);
+
 create index if not exists idx_mata_kuliah_user_id on public.mata_kuliah(user_id);
 create index if not exists idx_tugas_user_id on public.tugas(user_id);
 create index if not exists idx_tugas_mk_id on public.tugas(mata_kuliah_id);
@@ -122,6 +139,8 @@ create index if not exists idx_materi_user_id on public.materi(user_id);
 create index if not exists idx_absensi_user_id on public.absensi(user_id);
 create index if not exists idx_absensi_mk_pertemuan on public.absensi(mata_kuliah_id, pertemuan_ke);
 create index if not exists idx_mahasiswa_owner_id on public.mahasiswa(owner_id);
+create index if not exists idx_seminar_reg_user_id on public.seminar_registrations(user_id);
+create index if not exists idx_seminar_reg_seminar_id on public.seminar_registrations(seminar_id);
 create unique index if not exists uq_mahasiswa_owner_nama on public.mahasiswa(owner_id, nama);
 
 alter table public.users enable row level security;
@@ -132,6 +151,8 @@ alter table public.chat_messages enable row level security;
 alter table public.materi enable row level security;
 alter table public.mahasiswa enable row level security;
 alter table public.absensi enable row level security;
+alter table public.seminar_registrations enable row level security;
+alter table public.seminars enable row level security;
 
 drop policy if exists "users_self_read" on public.users;
 drop policy if exists "users_self_insert" on public.users;
@@ -156,6 +177,13 @@ drop policy if exists "mahasiswa_owner_insert" on public.mahasiswa;
 drop policy if exists "mahasiswa_owner_update" on public.mahasiswa;
 drop policy if exists "mahasiswa_owner_delete" on public.mahasiswa;
 drop policy if exists "mahasiswa_anon_all" on public.mahasiswa;
+drop policy if exists "seminar_registrations_anon_all" on public.seminar_registrations;
+drop policy if exists "seminars_anon_all" on public.seminars;
+drop policy if exists "public_seminars_select" on public.seminars;
+drop policy if exists "user_registrations_select" on public.seminar_registrations;
+drop policy if exists "user_registrations_insert" on public.seminar_registrations;
+drop policy if exists "user_registrations_update" on public.seminar_registrations;
+drop policy if exists "user_registrations_delete" on public.seminar_registrations;
 
 create policy "users_anon_all" on public.users
 for all to anon, authenticated
@@ -193,6 +221,16 @@ using (true)
 with check (true);
 
 create policy "mahasiswa_anon_all" on public.mahasiswa
+for all to anon, authenticated
+using (true)
+with check (true);
+
+create policy "seminar_registrations_anon_all" on public.seminar_registrations
+for all to anon, authenticated
+using (true)
+with check (true);
+
+create policy "seminars_anon_all" on public.seminars
 for all to anon, authenticated
 using (true)
 with check (true);

@@ -1,290 +1,171 @@
-# 📚 Kelasin - Aplikasi E-Learning Management
-
 <div align="center">
 
-![Kelasin Logo](https://img.shields.io/badge/Kelasin-E--Learning-blue?style=for-the-badge)
-![Android](https://img.shields.io/badge/Android-21%2B-green?style=for-the-badge&logo=android)
+![Kelasin Logo](https://img.shields.io/badge/Kelasin-E--Learning-blue?style=for-the-badge&logo=android)
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.9-purple?style=for-the-badge&logo=kotlin)
 ![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-Latest-4285F4?style=for-the-badge&logo=jetpackcompose)
+![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)
 
-**Aplikasi manajemen pembelajaran untuk mahasiswa dan dosen**
+# 📚 Kelasin - Modern E-Learning Management
 
-[Fitur](#-fitur) • [Teknologi](#-teknologi) • [Instalasi](#-instalasi) • [Screenshots](#-screenshots)
+**Aplikasi manajemen pembelajaran terpadu untuk ekosistem digital cerdas mahasiswa dan dosen.**
+
+[Fitur](#-fitur-unggulan) • [Arsitektur & Alur](#-arsitektur--alur-sistem) • [Database](#-skema-database) • [Screenshots](#-galeri-tangkapan-layar) • [Download](#-unduh-rilis)
 
 </div>
 
 ---
 
-## 📖 Tentang Project
+## 📖 Tentang Kelasin
 
-**Kelasin** adalah aplikasi Android modern untuk manajemen e-learning yang memudahkan mahasiswa dan dosen dalam mengelola mata kuliah, tugas, dan catatan pembelajaran. Dibangun dengan teknologi terkini menggunakan **Kotlin** dan **Jetpack Compose**.
+**Kelasin** adalah aplikasi Android berbasis *Jetpack Compose* yang mendigitalkan seluruh proses perkuliahan dan administrasi kampus. Mulai dari manajemen **Mata Kuliah**, **Tugas**, **Absensi**, hingga fitur terbaru yaitu **Pendaftaran Seminar**.
 
-Project ini dibuat sebagai bagian dari tugas **Week 5 - Complete Android Studio Project** dengan mengimplementasikan seluruh komponen UI yang dipelajari.
-
----
-
-## ✨ Fitur Utama
-
-### 🎯 Fitur Umum
-- ✅ **Autentikasi Lengkap** - Login & Register dengan validasi real-time
-- 📚 **Manajemen Mata Kuliah** - Tambah, edit, dan hapus mata kuliah
-- 📝 **Manajemen Tugas** - Tracking tugas dengan deadline dan status
-- 📓 **Catatan Digital** - Buat dan kelola catatan pembelajaran
-- 🌓 **Dark Mode** - Dukungan tema gelap dan terang
-- 🔄 **Sync Cloud** - Sinkronisasi data dengan Supabase
-
-### 🎓 Fitur untuk Mahasiswa
-- Dashboard tugas yang harus dikerjakan
-- Filter tugas berdasarkan status (Pending, Dikerjakan, Selesai)
-- Notifikasi deadline tugas
-- Manajemen catatan per mata kuliah
-
-### 👨‍🏫 Fitur untuk Dosen
-- Upload dan kelola tugas untuk mahasiswa
-- Monitoring progress tugas mahasiswa
-- Manajemen materi mata kuliah
+Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *real-time*, sinkronisasi antar modul secara presisi, dan estetika UI/UX tingkat premium dengan *Glassmorphism* dan *Dynamic Gradient Colors*.
 
 ---
 
-## 🎨 Implementasi Week 5 Requirements
+## ✨ Fitur Unggulan
 
-Project ini memenuhi **SEMUA** requirement tugas Week 5:
+### 🎓 1. Manajemen Akademik
+- **Mata Kuliah & Absensi**: Mengelola jadwal kuliah, ruangan, beserta catatan kehadiran mahasiswa yang tersinkronisasi.
+- **Tugas & Materi**: Distribusi *file* materi PDF dan pelacakan *deadline* tugas secara responsif.
+- **Catatan Digital & Chat**: Ruang diskusi kolaboratif.
 
-### ✅ 01. Complete Form dengan TextInputLayout
-- Form registrasi lengkap dengan:
-  - **Nama Lengkap** - dengan validasi minimal 2 karakter
-  - **Username** - validasi minimal 3 karakter, tanpa spasi
-  - **Email** - dengan validasi format email
-  - **Password** - minimal 8 karakter dengan password strength indicator
-  - **Konfirmasi Password** - validasi kecocokan password
-- Semua field menggunakan Material Design 3 `OutlinedTextField` dengan icon dan styling glass-morphism
+### 🎫 2. Modul Seminar (Fitur Terbaru!)
+- **Dynamic Gradient UI**: Kartu seminar dan layar riwayat mengadopsi palet warna *custom* yang ditentukan dari backend, menciptakan gradien warna cantik yang disesuaikan per kategori seminar.
+- **Pendaftaran One-Tap**: Mendaftar seminar lengkap dengan validasi kuota secara *real-time*.
+- **Pertanyaan Dinamis**: Form registrasi dapat dikonfigurasi admin untuk menambah pertanyaan pilihan ganda (*Dropdown*) atau isian secara *on-the-fly*.
+- **Sistem Status Tiket**: Sinkronisasi status "Terdaftar", "Lolos", atau "Tidak Lolos" yang otomatis diperbarui di layar *Riwayat*.
 
-### ✅ 02. Advanced Validation
-- **Validasi Tidak Kosong** - Semua field wajib diisi
-- **Format Email** - Menggunakan `Patterns.EMAIL_ADDRESS.matcher()`
-- **Password Match** - Validasi password dan confirm password identik
-- **Real-time Validation** - Error muncul langsung saat user mengetik dengan `onValueChange`
-- **Bonus Features:**
-  - Password strength indicator visual (Lemah/OK/Kuat)
-  - Username auto-remove spasi
-  - Email auto-trim whitespace
-
-### ✅ 03. Selection Controls
-- **RadioGroup** - Pilihan Jenis Kelamin (Laki-laki/Perempuan)
-- **Checkbox** - Pilihan Hobi dengan minimal 3 harus dipilih
-- Validasi checkbox minimal 3 pilihan aktif
-- Visual feedback untuk setiap pilihan
-
-### ✅ 04. Spinner & Dialog
-- **Spinner (ExposedDropdownMenu)** - Pilihan Program Studi:
-  - Informatika
-  - Sistem Informasi
-  - Teknik Elektro
-  - Teknik Industri
-  - Arsitektur
-- **AlertDialog** - Konfirmasi pendaftaran dengan preview data sebelum submit
-
-### ✅ 05. Gesture Interaction (Long Press)
-- Implementasi **Long Press** pada button "Refresh" di HomeScreen
-- Menggunakan `pointerInput` + `detectTapGestures` dengan `onLongPress`
-- Long press memunculkan dialog dengan opsi tambahan
-
-### ✅ 06. GitHub Repository
-- ✅ Project di-upload ke GitHub
-- ✅ README.md lengkap dengan dokumentasi
-- ✅ Proper `.gitignore` untuk Android project
+### 🔒 3. Keamanan & Validasi
+- **Real-time Error Handling**: Mengoreksi format *email*, kekuatan *password*, dan form pendaftaran seketika saat user mengetik (tanpa menunggu tombol *Submit*).
+- **Konfirmasi Persetujuan**: Menggunakan *AlertDialog* dan *Checkbox Consent* untuk memastikan tidak ada kesalahan input.
 
 ---
 
-## 🛠️ Teknologi
+## 🏗 Arsitektur & Alur Sistem
 
-### Core Technologies
-- **Kotlin** - Bahasa pemrograman utama
-- **Jetpack Compose** - Modern UI toolkit
-- **Material Design 3** - Design system
-- **Coroutines & Flow** - Asynchronous programming
+### Alur Aplikasi (Use Case)
 
-### Architecture & Libraries
-- **MVVM Architecture** - Separation of concerns
-- **Room Database** - Local data persistence
-- **Supabase** - Backend & cloud sync
-- **Ktor Client** - HTTP networking
-- **Kotlinx Serialization** - JSON parsing
-- **Coil** - Image loading
-- **DataStore** - Preferences storage
-
-### UI Components
-- Jetpack Compose UI
-- Material 3 Components
-- Custom Glass-morphism design
-- Animated transitions
-- Custom gestures (Long press, swipe)
-
----
-
-## 📱 Instalasi
-
-### Prerequisites
-- **Android Studio** Iguana | 2023.2.1 atau lebih baru
-- **JDK** 17 atau lebih baru
-- **Android SDK** 21+ (minimum) / 35 (target)
-
-### Langkah Instalasi
-
-1. **Clone Repository**
-   ```bash
-   git clone https://github.com/looplipop/kelasin.git
-   cd kelasin
-   ```
-
-2. **Konfigurasi Supabase** (Opsional - untuk fitur cloud sync)
-   
-   Buat file `gradle.properties` di root project:
-   ```properties
-   SUPABASE_URL=your_supabase_url
-   SUPABASE_PUBLISHABLE_KEY=your_publishable_key
-   ```
-
-3. **Build Project**
-   ```bash
-   ./gradlew build
-   ```
-
-4. **Run di Emulator/Device**
-   - Buka project di Android Studio
-   - Klik Run ▶️ atau tekan `Shift + F10`
-
----
-
-## 📸 Screenshots
-
-> **Note:** Tambahkan screenshot aplikasi di folder `/screenshots` dan update bagian ini
-
-### Login & Register
-| Login Screen | Register Form | Validation |
-|-------------|---------------|------------|
-| [Add Screenshot] | [Add Screenshot] | [Add Screenshot] |
-
-### Dashboard & Features
-| Dashboard | Mata Kuliah | Tugas |
-|-----------|-------------|-------|
-| [Add Screenshot] | [Add Screenshot] | [Add Screenshot] |
-
-### Selection Controls & Dialog
-| RadioGroup & Checkbox | Spinner | AlertDialog |
-|----------------------|---------|-------------|
-| [Add Screenshot] | [Add Screenshot] | [Add Screenshot] |
-
----
-
-## 📂 Struktur Project
-
+```mermaid
+usecaseDiagram
+    actor Mahasiswa as "👨‍🎓 Mahasiswa"
+    actor Admin as "👨‍💼 Admin/Dosen"
+    
+    package "Aplikasi Kelasin" {
+        usecase "Login & Register" as UC1
+        usecase "Manajemen Mata Kuliah" as UC2
+        usecase "Upload & Unduh Materi" as UC3
+        usecase "Melakukan Absensi" as UC4
+        usecase "Manajemen Tugas" as UC5
+        usecase "Daftar Seminar" as UC6
+        usecase "Kelola Kuota & Seminar" as UC7
+    }
+    
+    Mahasiswa --> UC1
+    Mahasiswa --> UC3
+    Mahasiswa --> UC4
+    Mahasiswa --> UC5
+    Mahasiswa --> UC6
+    
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC7
 ```
-kelasin/
-├── app/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/kelasin/app/
-│   │   │   │   ├── data/           # Data layer
-│   │   │   │   │   ├── entity/     # Room entities
-│   │   │   │   │   ├── repository/ # Repositories
-│   │   │   │   │   └── supabase/   # Supabase client
-│   │   │   │   ├── ui/             # UI layer
-│   │   │   │   │   ├── auth/       # Login & Register screens
-│   │   │   │   │   ├── main/       # Home, Tugas, Catatan screens
-│   │   │   │   │   ├── detail/     # Detail screens
-│   │   │   │   │   └── theme/      # Theme & styling
-│   │   │   │   └── MainActivity.kt
-│   │   │   └── res/                # Resources
-│   │   └── test/                   # Unit tests
-│   └── build.gradle.kts
-├── gradle/
-├── .gitignore
-├── README.md
-└── settings.gradle.kts
+
+### Flow Sinkronisasi Data (Seminar)
+
+```mermaid
+sequenceDiagram
+    participant User as Mahasiswa (UI)
+    participant Repo as SeminarRepository
+    participant DB as Supabase PostgreSQL
+    
+    User->>Repo: Buka Halaman "Riwayat Saya"
+    Repo->>DB: Fetch Seminar Registrations (JOIN seminars)
+    DB-->>Repo: Return Data + color_hex & is_selection_enabled
+    Repo-->>User: Render Gradient Card & Status Label "Terdaftar"
 ```
 
 ---
 
-## 🎯 Fitur Week 5 Implementation Details
+## 🗄 Skema Database
 
-### 1. RegisterScreen.kt
-**Lokasi:** `app/src/main/java/com/kelasin/app/ui/auth/RegisterScreen.kt`
+Kelasin menggunakan model relasional yang efisien di backend **Supabase**. Berikut adalah cuplikan entitas utama:
 
-Implementasi lengkap form registrasi dengan:
-- ✅ TextInputLayout fields (line 240-361)
-- ✅ Real-time validation (line 240-361)
-- ✅ RadioGroup jenis kelamin (line 367-382)
-- ✅ Checkbox hobi minimal 3 (line 385-410)
-- ✅ Spinner program studi (line 413-449)
-- ✅ AlertDialog konfirmasi (line 523-542)
-- ✅ Password strength indicator (line 287-332)
+```mermaid
+erDiagram
+    USERS ||--o{ MAHASISWA : "memiliki profil"
+    USERS ||--o{ MATA_KULIAH : "mengelola"
+    MATA_KULIAH ||--o{ MATERI : "menyimpan"
+    MATA_KULIAH ||--o{ TUGAS : "memberikan"
+    MATA_KULIAH ||--o{ ABSENSI : "mencatat"
+    USERS ||--o{ SEMINAR_REGISTRATIONS : "mendaftar"
+    SEMINARS ||--o{ SEMINAR_REGISTRATIONS : "menerima tiket"
 
-### 2. HomeScreen.kt
-**Lokasi:** `app/src/main/java/com/kelasin/app/ui/main/HomeScreen.kt`
+    SEMINARS {
+        uuid id PK
+        string title
+        int quota
+        string category
+        varchar color_hex
+        bool is_selection_enabled
+    }
 
-Implementasi gesture interaction:
-- ✅ Long press pada refresh button (line 360-368)
-- ✅ Dialog action pada long press
-- ✅ Visual feedback
-
----
-
-## 🔐 Security Notes
-
-⚠️ **PENTING:** File `gradle.properties` berisi API keys dan tidak di-commit ke repository. 
-
-Untuk production:
-- Gunakan environment variables
-- Encrypt sensitive data
-- Implement ProGuard untuk obfuscation
+    SEMINAR_REGISTRATIONS {
+        uuid id PK
+        uuid user_id FK
+        uuid seminar_id FK
+        varchar selection_status
+    }
+```
 
 ---
 
-## 🚀 Future Improvements
+## 📸 Galeri Tangkapan Layar
 
-- [ ] Notifikasi push untuk deadline tugas
-- [ ] Integrasi Google Calendar
-- [ ] Export catatan ke PDF
-- [ ] Offline-first architecture dengan sync
-- [ ] Support multi-language (i18n)
-- [ ] Widget home screen
-- [ ] Biometric authentication
+### Autentikasi & Dashboard Utama
+| Login & Form Role | Home Dashboard | Dark Mode |
+|:---:|:---:|:---:|
+| <img src="docs/images/form-login.jpg" width="250"> | <img src="docs/images/dashboard-home.jpg" width="250"> | <img src="docs/images/dark-mode.jpg" width="250"> |
+| <img src="docs/images/form-awal-pemilihan-role-mahasiswa-admin.jpg" width="250"> |
 
----
+### Menu Akademik Lengkap
+| Kalender Akademik | Mata Kuliah | Absensi & PDF |
+|:---:|:---:|:---:|
+| <img src="docs/images/menu-kalender-akademik.jpg" width="250"> | <img src="docs/images/menu-matakuliah.jpg" width="250"> | <img src="docs/images/menu-absensi.jpg" width="250"> |
+| <img src="docs/images/lihat-absensi.jpg" width="250"> | <img src="docs/images/absensi-pdf.jpg" width="250"> |
 
-## 👨‍💻 Developer
+| Tugas & Materi | Catatan & Chat |
+|:---:|:---:|
+| <img src="docs/images/menu-tugas.jpg" width="250"> | <img src="docs/images/menu-materi.jpg" width="250"> |
+| <img src="docs/images/menu-catatan.jpg" width="250"> | <img src="docs/images/catatan-chat.jpg" width="250"> |
 
-**Nama:** [Nama Anda]  
-**NIM:** [NIM Anda]  
-**Kelas:** [Kelas Anda]  
-**Universitas:** [Nama Universitas]
-
-**Tugas:** Week 5 - Complete Android Studio Project (E-Learning)  
-**Mata Kuliah:** Pemrograman Mobile / Android
-
----
-
-## 📄 License
-
-This project is created for educational purposes as part of university coursework.
+### 🚀 Eksklusif: Seminar Registration App
+| Katalog Seminar | Form Pendaftaran Lengkap | Tiket & Detail Peserta |
+|:---:|:---:|:---:|
+| <img src="docs/images/1.png" width="250"> | <img src="docs/images/seminar.jpg" width="250"> | <img src="docs/images/2.png" width="250"> |
+| <img src="docs/images/3.png" width="250"> | <img src="docs/images/4.png" width="250"> | <img src="docs/images/5.png" width="250"> |
+| <img src="docs/images/6.png" width="250"> | <img src="docs/images/7.png" width="250"> | <img src="docs/images/8.png" width="250"> |
 
 ---
 
-## 🙏 Acknowledgments
+## 🛠 Teknologi yang Digunakan
 
-- **Material Design 3** - UI/UX guidelines
-- **Jetpack Compose** - Modern Android UI
-- **Supabase** - Backend as a Service
-- **Android Developer Docs** - Comprehensive documentation
-- Dosen pengampu untuk guidance dan requirements
+- **Frontend:** Kotlin, Jetpack Compose (Material 3), Compose Navigation, Coil (Image Loading).
+- **Backend:** Supabase (Auth, Postgres Database, Real-time).
+- **Networking:** Ktor Client, Kotlinx Serialization.
+- **Arsitektur:** MVVM (Model-View-ViewModel), Repository Pattern.
 
 ---
 
+## 📦 Unduh Rilis
+
+Aplikasi siap pakai (APK) telah dikompilasi dan dapat diunduh pada halaman **Releases** repositori ini.
+
+👉 **[Download Kelasin APK Latest Release](https://github.com/looplipop/kelasin/releases)**
+
+---
 <div align="center">
-
-**⭐ Jika project ini membantu, berikan star!**
-
-Made with ❤️ using Kotlin & Jetpack Compose
-
+Dibuat dengan ❤️ untuk kemudahan pendidikan digital.
 </div>

@@ -44,6 +44,33 @@
             android:name=".ui.main.MainActivity"
             android:exported="false" />
 
+        <!-- Seminar feature flow -->
+        <activity
+            android:name=".ui.seminar.SeminarHomeActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.seminar.SeminarDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.seminar.SeminarHomeActivity" />
+        <activity
+            android:name=".ui.seminar.RegistrationDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.seminar.SeminarHomeActivity" />
+        <activity
+            android:name=".ui.seminar.SeminarRegistrationActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".ui.seminar.SeminarHomeActivity" />
+        <activity
+            android:name=".ui.seminar.SeminarResultActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.seminar.SeminarHomeActivity" />
+        <activity
+            android:name=".ui.seminar.AdminSeminarActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.seminar.SeminarHomeActivity" />
+
         <!-- DetailActivity: halaman detail data -->
         <activity
             android:name=".ui.detail.DetailActivity"
