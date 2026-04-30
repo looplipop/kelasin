@@ -58,13 +58,13 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 
 | Tugas & Materi | Catatan & Chat |
 |:---:|:---:|
-| <img src="docs/images/menu-tugas.jpg" width="250"> | <img src="docs/images/menu-materi.jpg" width="250"> |
-| <img src="docs/images/menu-catatan.jpg" width="250"> | <img src="docs/images/catatan-chat.jpg" width="250"> |
+| <img src="docs/images/menu-tugas.jpg" width="250"> | <img src="docs/images/menu-catatan.jpg" width="250"> |
+| <img src="docs/images/menu-materi.jpg" width="250"> | <img src="docs/images/catatan-chat.jpg" width="250"> |
 
 ### 🚀 Eksklusif: Seminar Registration App
 | Katalog Seminar | Form Pendaftaran Lengkap | Tiket & Detail Peserta |
 |:---:|:---:|:---:|
-| <img src="docs/images/1.png" width="250"> | <img src="docs/images/seminar.jpg" width="250"> | <img src="docs/images/2.png" width="250"> |
+| <img src="docs/images/seminar.jpg" width="250"> |
 ---
 
 ## 🛠 Teknologi yang Digunakan
