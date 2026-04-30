@@ -54,7 +54,7 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 | Kalender Akademik | Mata Kuliah | Absensi & PDF |
 |:---:|:---:|:---:|
 | <img src="docs/images/menu-kalender-akademik.jpg" width="250"> | <img src="docs/images/menu-matakuliah.jpg" width="250"> | <img src="docs/images/menu-absensi.jpg" width="250"> |
-| <img src="docs/images/lihat-absensi.jpg" width="250"> | <img src="docs/images/absensi-pdf.jpg" width="250"> |
+| <img src="docs/images/lihat-absensi.jpg" width="250"> |  | <img src="docs/images/absensi-pdf.jpg" width="250"> |
 
 | Tugas & Materi | Catatan & Chat |
 |:---:|:---:|
