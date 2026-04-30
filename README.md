@@ -65,9 +65,6 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 | Katalog Seminar | Form Pendaftaran Lengkap | Tiket & Detail Peserta |
 |:---:|:---:|:---:|
 | <img src="docs/images/1.png" width="250"> | <img src="docs/images/seminar.jpg" width="250"> | <img src="docs/images/2.png" width="250"> |
-| <img src="docs/images/3.png" width="250"> | <img src="docs/images/4.png" width="250"> | <img src="docs/images/5.png" width="250"> |
-| <img src="docs/images/6.png" width="250"> | <img src="docs/images/7.png" width="250"> | <img src="docs/images/8.png" width="250"> |
-
 ---
 
 ## 🛠 Teknologi yang Digunakan
