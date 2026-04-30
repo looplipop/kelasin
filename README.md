@@ -54,7 +54,7 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 | Kalender Akademik | Mata Kuliah | Absensi & PDF |
 |:---:|:---:|:---:|
 | <img src="docs/images/menu-kalender-akademik.jpg" width="250"> | <img src="docs/images/menu-matakuliah.jpg" width="250"> | <img src="docs/images/menu-absensi.jpg" width="250"> |
-| <img src="docs/images/lihat-absensi.jpg" width="250"> | <img src="docs/images/matkul.jpg" width="250"> | <img src="docs/images/absensi-pdf.jpg" width="250"> |
+|  | <img src="docs/images/matkul.jpg" width="250"> | <img src="docs/images/lihat-absensi.jpg" width="250"> |
 
 | Tugas | Catatan & Chat | Materi |
 |:---:|:---:|:---:|
@@ -62,9 +62,10 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 | <img src="docs/images/tugas.jpg" width="250"> | <img src="docs/images/catatan-chat.jpg" width="250"> |<img src="docs/images/matri.jpg" width="250">
 
 ### 🚀 Eksklusif: Seminar Registration App
-| Katalog Seminar | Form Pendaftaran Lengkap | Tiket & Detail Peserta |
+| Katalog Seminar |
 |:---:|:---:|:---:|
 | <img src="docs/images/seminar.jpg" width="250"> |
+| <img src="docs/images/seminar-daftar.jpg" width="250"> |
 ---
 
 ## 🛠 Teknologi yang Digunakan
