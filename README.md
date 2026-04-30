@@ -58,12 +58,12 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 
 | Tugas | Catatan & Chat | Materi |
 |:---:|:---:|:---:|
-| <img src="docs/images/menu-tugas.jpg" width="250"> | <img src="docs/images/menu-catatan.jpg" width="250"> | <img src="docs/images/menu-materi.jpg" width="250">
-| <img src="docs/images/tugas.jpg" width="250"> | <img src="docs/images/catatan-chat.jpg" width="250"> |<img src="docs/images/matri.jpg" width="250">
+| <img src="docs/images/menu-tugas.jpg" width="250"> | <img src="docs/images/menu-catatan.jpg" width="250"> | <img src="docs/images/menu-materi.jpg" width="250"> |
+| <img src="docs/images/tugas.jpg" width="250"> | <img src="docs/images/catatan-chat.jpg" width="250"> |<img src="docs/images/matri.jpg" width="250"> |
 
 ### 🚀 Eksklusif: Seminar Registration App
 | Katalog Seminar |
-|:---:|:---:|:---:|
+|:---:|
 | <img src="docs/images/seminar.jpg" width="250"> |
 | <img src="docs/images/seminar-daftar.jpg" width="250"> |
 ---
