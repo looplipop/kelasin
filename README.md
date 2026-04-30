@@ -65,7 +65,7 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 | Katalog Seminar |
 |:---:|
 | <img src="docs/images/seminar.jpg" width="250"> |
-| <img src="docs/images/seminar-daftar.jpg" width="250"> |
+| <img src="docs/images/seminardaftar.jpg" width="250"> |
 ---
 
 ## 🛠 Teknologi yang Digunakan
