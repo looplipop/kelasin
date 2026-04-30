@@ -47,8 +47,8 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 ### Autentikasi & Dashboard Utama
 | Login & Form Role | Home Dashboard/Dark Mode |
 |:---:|:---:|
-| <img src="docs/images/form-login.jpg" width="250"> | <img src="docs/images/dashboard-home.jpg" width="250"> |
-| <img src="docs/images/form-awal-pemilihan-role-mahasiswa-admin.jpg" width="250"> | <img src="docs/images/dark-mode.jpg" width="250"> |
+| <img src="docs/images/form-awal-pemilihan-role-mahasiswa-admin.jpg" width="250"> | <img src="docs/images/dashboard-home.jpg" width="250"> |
+| <img src="docs/images/form-login.jpg" width="250"> | <img src="docs/images/dark-mode.jpg" width="250"> |
 
 ### Menu Akademik Lengkap
 | Kalender Akademik | Mata Kuliah | Absensi & PDF |
