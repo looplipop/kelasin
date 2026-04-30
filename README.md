@@ -45,21 +45,21 @@ Ditenagai oleh **Supabase (PostgreSQL)**, aplikasi ini menyajikan data secara *r
 ## 📸 Galeri Tangkapan Layar
 
 ### Autentikasi & Dashboard Utama
-| Login & Form Role | Home Dashboard | Dark Mode |
-|:---:|:---:|:---:|
-| <img src="docs/images/form-login.jpg" width="250"> | <img src="docs/images/dashboard-home.jpg" width="250"> | <img src="docs/images/dark-mode.jpg" width="250"> |
-| <img src="docs/images/form-awal-pemilihan-role-mahasiswa-admin.jpg" width="250"> |
+| Login & Form Role | Home Dashboard/Dark Mode |
+|:---:|:---:|
+| <img src="docs/images/form-login.jpg" width="250"> | <img src="docs/images/dashboard-home.jpg" width="250"> |
+| <img src="docs/images/form-awal-pemilihan-role-mahasiswa-admin.jpg" width="250"> | <img src="docs/images/dark-mode.jpg" width="250"> |
 
 ### Menu Akademik Lengkap
 | Kalender Akademik | Mata Kuliah | Absensi & PDF |
 |:---:|:---:|:---:|
 | <img src="docs/images/menu-kalender-akademik.jpg" width="250"> | <img src="docs/images/menu-matakuliah.jpg" width="250"> | <img src="docs/images/menu-absensi.jpg" width="250"> |
-| <img src="docs/images/lihat-absensi.jpg" width="250"> |  | <img src="docs/images/absensi-pdf.jpg" width="250"> |
+| <img src="docs/images/lihat-absensi.jpg" width="250"> | <img src="docs/images/matkul.jpg" width="250"> | <img src="docs/images/absensi-pdf.jpg" width="250"> |
 
-| Tugas & Materi | Catatan & Chat |
-|:---:|:---:|
-| <img src="docs/images/menu-tugas.jpg" width="250"> | <img src="docs/images/menu-catatan.jpg" width="250"> |
-| <img src="docs/images/menu-materi.jpg" width="250"> | <img src="docs/images/catatan-chat.jpg" width="250"> |
+| Tugas | Catatan & Chat | Materi |
+|:---:|:---:|:---:|
+| <img src="docs/images/menu-tugas.jpg" width="250"> | <img src="docs/images/menu-catatan.jpg" width="250"> | <img src="docs/images/menu-materi.jpg" width="250">
+| <img src="docs/images/tugas.jpg" width="250"> | <img src="docs/images/catatan-chat.jpg" width="250"> |<img src="docs/images/matri.jpg" width="250">
 
 ### 🚀 Eksklusif: Seminar Registration App
 | Katalog Seminar | Form Pendaftaran Lengkap | Tiket & Detail Peserta |
